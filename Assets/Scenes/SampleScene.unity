@@ -372,7 +372,7 @@ PrefabInstance:
     - target: {fileID: 5858287713680789211, guid: a58c56b05c079c74090fbfe2e039b215,
         type: 3}
       propertyPath: m_Name
-      value: Player Eric Avatar
+      value: PlayerEricAvatar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a58c56b05c079c74090fbfe2e039b215, type: 3}
