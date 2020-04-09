@@ -37,7 +37,7 @@ public class VRRig : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
         head.Map();
         leftHand.Map();

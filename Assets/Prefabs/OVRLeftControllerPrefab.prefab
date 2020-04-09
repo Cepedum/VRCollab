@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 488160}
   - component: {fileID: 11479374}
   m_Layer: 0
-  m_Name: OVRControllerPrefab
+  m_Name: OVRLeftControllerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_modelOculusTouchQuestAndRiftSRightController: {fileID: 1307870489563208}
   m_modelOculusTouchRiftLeftController: {fileID: 1999073185825882}
   m_modelOculusTouchRiftRightController: {fileID: 1351868014986946}
-  m_controller: 0
+  m_controller: 16777216
 --- !u!1 &1000010178323718
 GameObject:
   m_ObjectHideFlags: 0
