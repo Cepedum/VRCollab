@@ -90,7 +90,7 @@ namespace Photon.Voice.Unity
         public AppSettings Settings;
         #if UNITY_EDITOR
         [HideInInspector]
-        public bool ShowSettings;
+        public bool ShowSettings = true;
         #endif
 
         /// <summary> Special factory to link Speaker components with incoming remote audio streams</summary>
@@ -296,28 +296,10 @@ namespace Photon.Voice.Unity
                 return false;
             }
 
-            if (Settings.Protocol == ConnectionProtocol.Tcp)
+            this.Client.LoadBalancingPeer.TransportProtocol = Settings.Protocol;
+            if (this.Client.LoadBalancingPeer.TransportProtocol != ConnectionProtocol.Udp && this.Logger.IsWarningEnabled)
             {
-                if (!Settings.IsMasterServerAddress)
-                {
-                    if (this.Logger.IsWarningEnabled)
-                    {
-                        this.Logger.LogWarning("Requested protocol not supported on Photon Cloud {0}. Switched to UDP.", Settings.Protocol);
-                    }
-                    this.Client.LoadBalancingPeer.TransportProtocol = ConnectionProtocol.Udp;
-                }
-                else
-                {
-                    this.Client.LoadBalancingPeer.TransportProtocol = ConnectionProtocol.Tcp;
-                }
-            }
-            else if (Settings.Protocol != ConnectionProtocol.Udp)
-            {
-                if (this.Logger.IsWarningEnabled)
-                {
-                    this.Logger.LogWarning("Requested protocol not supported: {0}. Switched to UDP.", Settings.Protocol);
-                }
-                this.Client.LoadBalancingPeer.TransportProtocol = ConnectionProtocol.Udp;
+                this.Logger.LogWarning("Requested protocol could be not fully supported: {0}. Only UDP is recommended and tested.", Settings.Protocol);
             }
 
             this.Client.EnableLobbyStatistics = Settings.EnableLobbyStatistics;
@@ -336,7 +318,7 @@ namespace Photon.Voice.Unity
                 this.Client.IsUsingNameServer = false;
                 this.Client.MasterServerAddress = Settings.Port == 0 ? Settings.Server : string.Format("{0}:{1}", Settings.Server, Settings.Port);
 
-                return this.Client.Connect();
+                return this.Client.ConnectToMasterServer();
             }
 
             this.Client.AppId = Settings.AppIdVoice;

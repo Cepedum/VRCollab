@@ -1,5 +1,25 @@
 Photon Voice 2 Change Log
 
+v2.15 (April 07th, 2020)
+   PUN2: v2.17 (793fc726)
+   PhotonVoiceApi: revision 5434
+   FIXED: iOS crash when using Photon MicrophoneType which was introduced in v2.13 due to moving some logic to a worker thread.
+   CHANGED: ReactOnSystemChanges now relies on a native plugin on iOS instead of Unity's AudioSettings.OnAudioConfigurationChanged.
+   CHANGED: always refresh Recorder.PhotonMicrophoneEnumerator when ReactOnSystemChanges is enabled.
+   ADDED: inspector tooltips when hovering over on some VoiceConnection fields shared with PUN's PhotonServerSettings.
+
+v2.14 (March 30th, 2020)
+   PUN2: v2.17 (a5c45f77)
+   PhotonVoiceApi: revision 5350
+   CHANGED: PunVoiceDemo now has AutoTransmit & VAD enabled by default.
+   CHANGED: PunVoiceDemo now has AudioSource added to all prefabs with proper 3D Settings.
+   CHANGED: PunVoiceDemo now has the ground plan/quad 10x bigger so characters don't fall off the edges quickly.
+   CHANGED: PunVoiceDemo now has mesh colliders in trees so characters can't go through them.
+   CHANGED: AppSettings are shown/unfolded by default in VoiceConnection.
+   CHANGED: Recorder.UnityMicrophoneDevice name will hold the full device name instead of null for default device.
+   CHANGED: transport protocol restrictions lifted, replaced with warning if not UDP.
+   CHANGED: Recorder.ReactOnSystemChanges will restart recording only when the device in use is no longer available.
+
 v2.13 (February 03rd, 2020)
    PUN2: v2.16 (ad87bf1e)
    PhotonVoiceApi: revision 5350
@@ -10,7 +30,7 @@ v2.13 (February 03rd, 2020)
    CHANGED: Recorder.DebugEchoMode forced to false when Recorder.InterestGroup != 0.
    CHANGED: prevent connection attempt when app is quitting.
    CHANGED: PhotonVoiceNetwork.JoinRoom returns bool.
-   ADDED: error logs in case of join or leave failures by voice client0.
+   ADDED: error logs in case of join or leave failures by voice client.
    CHANGED: voice client will try to use same UserId as PUN when usePunAppSettings is true.
    FIXED: minor, avoiding exception when quitting in PUN integration demo.
 

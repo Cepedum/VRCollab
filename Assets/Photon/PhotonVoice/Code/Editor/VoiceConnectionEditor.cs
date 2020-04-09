@@ -54,7 +54,7 @@
             VoiceLogger.ExposeLogLevel(serializedObject, connection);
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.PropertyField(updateIntervalSp, new GUIContent("Update Interval (ms)", "time [ms] between consecutive SendOutgoingCommands calls"));
-            EditorGUILayout.PropertyField(enableSupportLoggerSp);
+            EditorGUILayout.PropertyField(enableSupportLoggerSp, new GUIContent("Support Logger", "Logs additional info for debugging.\nUse this when you submit bugs to the Photon Team."));
             #if !UNITY_ANDROID && !UNITY_IOS
             EditorGUILayout.PropertyField(runInBackground, new GUIContent("Run In Background", "Sets Unity's Application.runInBackground: Should the application keep running when the application is in the background?"));
             #endif
@@ -307,13 +307,13 @@
                 }
                 EditorGUILayout.EndHorizontal();
                 EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("AppVersion"));
-                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("UseNameServer"));
-                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("FixedRegion"));
-                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("Server"));
-                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("Port"));
-                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("Protocol"));
-                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("EnableLobbyStatistics"));
-                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("NetworkLogging"));
+                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("UseNameServer"), new GUIContent("Use Name Server", "Photon Cloud requires this checked.\nUncheck for Photon Server SDK (OnPremises)."));
+                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("FixedRegion"), new GUIContent("Fixed Region", "Photon Cloud setting, needs a Name Server.\nDefine one region to always connect to.\nLeave empty to use the best region from a server-side region list."));
+                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("Server"), new GUIContent("Server", "Typically empty for Photon Cloud.\nFor Photon Server, enter your host name or IP. Also uncheck \"Use Name Server\" for older Photon Server versions."));
+                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("Port"), new GUIContent("Port", "Use 0 for Photon Cloud.\nOnPremise uses 5055 for UDP and 4530 for TCP."));
+                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("Protocol"), new GUIContent("Protocol", "Use UDP where possible.\nWSS works on WebGL and Xbox exports.\nDefine WEBSOCKET for use on other platforms."));
+                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("EnableLobbyStatistics"), new GUIContent("Lobby Statistics", "When using multiple room lists (lobbies), the server can send info about their usage."));
+                EditorGUILayout.PropertyField(settingsSp.FindPropertyRelative("NetworkLogging"), new GUIContent("Network Logging", "Log level for the Photon libraries."));
                 EditorGUI.indentLevel--;
             }
         }
