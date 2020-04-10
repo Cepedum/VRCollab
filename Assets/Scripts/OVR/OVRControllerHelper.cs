@@ -164,8 +164,14 @@ public class OVRControllerHelper : MonoBehaviour
 			m_prevControllerConnectedCached = true;
 		}
 
-		if (!controllerConnected)
+		if (!controllerConnected) // ACF: Oculus Quest por defecto, aunque no haya HMD
 		{
+            m_modelOculusGoController.SetActive(false);
+            m_modelGearVrController.SetActive(false);
+            m_modelOculusTouchQuestAndRiftSLeftController.SetActive(m_controller == OVRInput.Controller.LTouch);
+            m_modelOculusTouchQuestAndRiftSRightController.SetActive(m_controller == OVRInput.Controller.RTouch);
+            m_modelOculusTouchRiftLeftController.SetActive(false);
+            m_modelOculusTouchRiftRightController.SetActive(false);
             return;
 		}
 	}

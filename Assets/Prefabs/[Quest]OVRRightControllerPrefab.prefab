@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 488160}
-  - component: {fileID: 11479374}
+  - component: {fileID: 1589572968960203213}
   m_Layer: 0
-  m_Name: OVRRightControllerPrefab
+  m_Name: '[Quest]OVRRightControllerPrefab'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11479374
+--- !u!114 &1589572968960203213
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 112276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aed62bf3ae2456c408f247f96808ce96, type: 3}
+  m_Script: {fileID: 11500000, guid: a6c3859025f239044b9e28c9024c4696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_modelGearVrController: {fileID: 1000010178323718}
