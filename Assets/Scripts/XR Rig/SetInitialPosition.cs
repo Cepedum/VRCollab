@@ -15,7 +15,7 @@ public class SetInitialPosition : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // El offset se debe actualizar en el primer frame, ya que es cuando cambia la posicion del avatar segun el HMD
         // De esta forma, da igual la posicion inicial 
