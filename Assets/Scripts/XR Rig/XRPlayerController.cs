@@ -18,6 +18,9 @@ public class XRPlayerController : MonoBehaviour
 
     private List<InputDevice> devices = new List<InputDevice>();
 
+    private Vector3 xMove;
+    private Vector3 zMove;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,10 +40,10 @@ public class XRPlayerController : MonoBehaviour
             GetDevice();
         }
 
-        UpdateMovement();
+        CalculateMovement();
     }
 
-    private void UpdateMovement()
+    private void CalculateMovement()
     {
         Vector2 primary2DValue;
 
@@ -48,13 +51,22 @@ public class XRPlayerController : MonoBehaviour
 
         if (controller.TryGetFeatureValue(primary2DVector, out primary2DValue) && primary2DValue != Vector2.zero)
         {
-            var xAxis = primary2DValue.x * speed * Time.deltaTime;
-            var zAxis = primary2DValue.y * speed * Time.deltaTime;
-
             Vector3 right = transform.TransformDirection(Vector3.right);
-            Vector3 forward = transform.TransformDirection(Vector3.forward);
+            xMove = primary2DValue.x * right;
 
-            transform.position = transform.position + right * xAxis + forward * zAxis;
+            Vector3 forward = transform.TransformDirection(Vector3.forward);
+            zMove = primary2DValue.y * forward;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        UpdateMovement();
+    }
+
+    private void UpdateMovement()
+    {
+        Vector3 movement = (xMove + zMove) * speed * Time.deltaTime;
+        transform.position = transform.position + movement;
     }
 }

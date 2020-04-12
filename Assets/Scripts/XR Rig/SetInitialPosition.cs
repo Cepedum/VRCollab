@@ -19,10 +19,7 @@ public class SetInitialPosition : MonoBehaviour
     {
         // El offset se debe actualizar en el primer frame, ya que es cuando cambia la posicion del avatar segun el HMD
         // De esta forma, da igual la posicion inicial
-        if (avatar.position.y != initialPosition.y)
-        {
-            transform.position = transform.position + new Vector3(0, initialPosition.y - avatar.position.y, 0);
-            enabled = false;
-        }
+        transform.position = transform.position + new Vector3(0, initialPosition.y - avatar.position.y, 0);
+        enabled = false;
     }
 }
