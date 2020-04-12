@@ -21,7 +21,7 @@ public class ControlFloorOffset : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (!setInitialPosition.enabled){
             if (avatar.position.y > initialPosition.y)

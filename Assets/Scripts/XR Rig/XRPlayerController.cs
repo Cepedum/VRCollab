@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.XR;
 
-[RequireComponent(typeof(Rigidbody))]
 public class XRPlayerController : MonoBehaviour
 {
     [Header("Behaviour Options")]
@@ -17,16 +16,7 @@ public class XRPlayerController : MonoBehaviour
 
     private InputDevice controller;
 
-    private bool buttonPressed;
-
-    private Rigidbody rigidbodyComponent;
-
     private List<InputDevice> devices = new List<InputDevice>();
-
-    private void OnEnable()
-    {
-        rigidbodyComponent = GetComponent<Rigidbody>();
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +55,6 @@ public class XRPlayerController : MonoBehaviour
             Vector3 forward = transform.TransformDirection(Vector3.forward);
 
             transform.position = transform.position + right * xAxis + forward * zAxis;
-
         }
     }
 }
