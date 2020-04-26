@@ -14,6 +14,9 @@ public class XRPlayerController : MonoBehaviour
     [SerializeField]
     private XRNode controllerNode = XRNode.LeftHand;
 
+    [SerializeField]
+    private Transform headset;
+
     private InputDevice controller;
 
     private List<InputDevice> devices = new List<InputDevice>();
@@ -49,12 +52,13 @@ public class XRPlayerController : MonoBehaviour
 
         InputFeatureUsage<Vector2> primary2DVector = CommonUsages.primary2DAxis;
 
+
         if (controller.TryGetFeatureValue(primary2DVector, out primary2DValue) && primary2DValue != Vector2.zero)
         {
-            Vector3 right = transform.TransformDirection(Vector3.right);
+            Vector3 right = transform.TransformDirection(Vector3.ProjectOnPlane(headset.right, Vector3.forward).normalized);           
             xMove = primary2DValue.x * right;
 
-            Vector3 forward = transform.TransformDirection(Vector3.forward);
+            Vector3 forward = transform.TransformDirection(Vector3.ProjectOnPlane(headset.forward, Vector3.up).normalized);
             zMove = primary2DValue.y * forward;
         }
     }
